@@ -1,0 +1,36 @@
+body{
+    background: #f5f7fa; /* Lighter shade for a clean look */
+    color: #333; /* Slightly darker text for better readability */
+    font-family: 'Arial', sans-serif; /* Modern, sans-serif font */
+}
+
+.container{
+    width: 100%;
+    max-width: 960px;
+    margin: 40px auto; /* Reduced margin for a tighter layout */
+    border-radius: 10px; /* Smoother edges */
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+    background: white;
+    padding: 20px; /* Added padding for content inside container */
+}
+
+.error{
+    color: #e63946; /* A more subtle red for errors */
+    font-size: 16px; /* Slightly larger font for readability */
+}
+
+button{
+    text-decoration: none;
+    background: #007bff; /* A bold primary color */
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 5px; /* Less pronounced border-radius */
+    padding: 12px 24px; /* Larger padding for a better touch target */
+    cursor: pointer; /* Cursor effect for button */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button:hover{
+    background: #0056b3; /* Darker shade on hover for interactive feel */
+}
