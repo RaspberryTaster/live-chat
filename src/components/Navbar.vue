@@ -1,22 +1,23 @@
 <template>
-  <nav>
-    <div>
-        <p>
-            Hey there... display name here
-        </p>
-        <p class = "email">
-            Currently logged in as... email
-        </p>
-        <button @click="handleClick">Logout</button>
-    </div>
-  </nav>
-</template>
+    <nav v-if="user">
+      <div class="nav-content">
+          <div class="user-info">
+              <p>Hey there... {{ user.displayName }}</p>
+              <p class="email">Currently logged in as... {{ user.email }}</p>
+          </div>
+          <button @click="handleClick">Logout</button>
+      </div>
+    </nav>
+  </template>
+  
 
 <script>
 import useLogout from '../composables/useLogout'
+import getUser from '../composables/getUser'
 export default {
     setup(){
         const {logout,error} = useLogout()
+        const {user} = getUser()
         const handleClick = async () =>{
             await logout()
             if(!error.value){
@@ -24,7 +25,7 @@ export default {
             }
         }
 
-        return {handleClick}
+        return {handleClick,user}
     }
 
 }
@@ -32,32 +33,38 @@ export default {
 
 <style>
 nav {
-    background-color: #fff; /* White background for a clean look */
-    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    padding: 10px 20px; /* Padding for spacing */
-    display: flex; /* Flexbox for layout */
-    justify-content: space-between; /* Space out the elements */
-    align-items: center; /* Align items vertically */
+    background-color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center; /* Align nav content to center */
+    align-items: center;
 }
 
-nav div {
-    display: flex; /* Flexbox for inner div */
-    align-items: center; /* Align items vertically */
+.nav-content {
+    width: 100%; /* Full width of the nav bar */
+    display: flex;
+    justify-content: space-between; /* Space between user info and button */
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
 }
 
 nav p {
-    margin: 0 10px 0 0; /* Margin to space out text and button */
-    color: #333; /* Darker color for text */
-    font-size: 16px; /* Readable font size */
+    margin: 0 10px;
+    color: #333;
+    font-size: 16px;
 }
 
 nav .email {
-    font-size: 14px; /* Slightly smaller font size for email */
-    color: #666; /* Lighter color for less emphasis */
+    font-size: 14px;
+    color: #666;
 }
 
 button {
-    background-color: #007bff; /* Bright color for the button */
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
@@ -67,6 +74,6 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3;
 }
 </style>
